@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>acr122_reader</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MiFare" Version="1.1.3" />
+    <PackageReference Include="Ninject" Version="3.3.6" />
+    <PackageReference Include="PCSC" Version="6.2.0" />
+    <PackageReference Include="PCSC.Iso7816" Version="6.2.0" />
+    <PackageReference Include="PCSC.Reactive" Version="6.2.0" />
+  </ItemGroup>
+
+</Project>
