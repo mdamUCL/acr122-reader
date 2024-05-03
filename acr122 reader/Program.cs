@@ -83,7 +83,7 @@ public class ACR122UReader
         {
             case "mifare classic":
                 // Extract UID (assuming 4 bytes)
-                string uid = BitConverter.ToString(response.Skip(1).Take(4).ToArray()).Replace("-", "");
+                string uid = BitConverter.ToString(response.Take(4).ToArray()).Replace("-", "");
                 return uid;
             case "desfire":
                 // Implement DESFire-specific response processing and data extraction
@@ -96,12 +96,21 @@ public class ACR122UReader
             
     public static void Main(string[] args)
     {
-        var reader = new ACR122UReader();
-        string cardType = "mifare classic"; // Replace with actual card type
-        byte[] command = new byte[] { 0xFF, 0xCA, 0x00, 0x00, 0x00 }; // Select Application (Mifare Classic)
+        bool Looping = true;
+        while (Looping) { 
+            var reader = new ACR122UReader();
+            string cardType = "mifare classic"; // Replace with actual card type
+            byte[] command = new byte[] { 0xFF, 0xCA, 0x00, 0x00, 0x00 }; // Select Application (Mifare Classic)
 
-        string data = reader.ReadCardUID(cardType, command);
-        Console.WriteLine("Card Data: {0}", data);
-        Console.ReadKey();
+            string data = reader.ReadCardUID(cardType, command);
+            
+            Console.WriteLine("\nCard Data: {0}", data);
+            Console.WriteLine("Press R to read another key");
+            ConsoleKeyInfo key = Console.ReadKey();
+            if (!ConsoleKeyInfo.Equals(key.Key.ToString(), "R"))
+            {
+                Looping = false;
+            }
+        }
     }
 }
